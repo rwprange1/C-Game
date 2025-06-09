@@ -1,0 +1,8 @@
+## Steps:
+1. Create main.cpp
+2. Add code
+3. Add the include path to cpp properties.json 
+3. Inlude the sfml using: 'g++ -c main.cpp -IC:\Users\richw\Downloads\CSStuff\C++\Libraries\SFML-3.0.0-windows-gcc-14.2.0-mingw-64-bit\SFML-3.0.0\include'
+4. Link it using: 'g++ main.o -o main -LC:\Users\richw\Downloads\CSStuff\C++\Libraries\SFML-3.0.0-windows-gcc-14.2.0-mingw-64-bit\SFML-3.0.0\lib -lsfml-graphics -lsfml-window -lsfml-system'
+5. Now add the dll files into this folder where our executable will be
+6. Now we run '.\main.exe' and get a green circle

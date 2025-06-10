@@ -5,6 +5,8 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <ctime>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -17,12 +19,20 @@ class Game {
         // fields
         sf::RenderWindow window;
         sf::VideoMode videoMode;
-        sf::RectangleShape enemy; //for textures use a sf::Sprite
-
+        sf::Vector2i mousePosWindow; // mouse pos rel to window
         
+        sf::RectangleShape enemy; //for textures use a sf::Sprite
+        std::vector<sf::RectangleShape> enemies;
 
+       
 
-        void initEnemy();
+        float enemySpawnTimer;
+        const float enemySpawnTimerMax = 1000.f;
+        unsigned int maxEnemies; 
+        unsigned int points; 
+
+         void initEnemy();
+         void initVars();
 
 
     public:
@@ -35,8 +45,13 @@ class Game {
         void update();
         void render();
         void pollEvents();
-
+        void updateMouse();
+        void spawnEnemy();
         bool isWinOpen();
+
+
+        void updateEnemies();
+        void renderEnemies();
 
 
 };

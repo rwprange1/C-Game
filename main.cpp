@@ -17,6 +17,8 @@ using namespace sf;
  */
 int main(){
     
+    //init rand
+    std::srand(static_cast<unsigned>(time(NULL)));
 
     //Our game 
     Game game; 

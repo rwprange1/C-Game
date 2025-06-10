@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -15,6 +17,13 @@ class Game {
         // fields
         sf::RenderWindow window;
         sf::VideoMode videoMode;
+        sf::RectangleShape enemy; //for textures use a sf::Sprite
+
+        
+
+
+        void initEnemy();
+
 
     public:
         //constructors / Destructors

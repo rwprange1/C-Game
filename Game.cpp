@@ -8,6 +8,8 @@
 Game::Game(){
     this->videoMode = sf::VideoMode({800, 600});
     this->window = sf::RenderWindow(this->videoMode, "Game", sf::Style::Titlebar | sf::Style::Close);
+    this->window.setFramerateLimit(60);
+    this->initEnemy();
 }
 
 /**
@@ -52,13 +54,23 @@ void Game::pollEvents(){
  */
 void Game::update(){
     this->pollEvents();
+
+    //update mouse pos, this gets relative mouse position to the entire screen
+    //std::cout << "Mouse Pos: " << sf::Mouse::getPosition().x << " " << sf::Mouse::getPosition().y << std::endl;
+
+     //update mouse pos, this gets relative mouse position to our window(moving the window changes the values)
+    std::cout << "Mouse Pos: " << sf::Mouse::getPosition(this->window).x << " " << sf::Mouse::getPosition(this->window).y << std::endl;
+    
 }
 
 /**
  * This function will clear the screen make chnages then display again
  */
 void Game::render(){
-    this->window.clear(sf::Color::Cyan);
+    this->window.clear();
+
+    this->window.draw(this->enemy); //not standard way to render objects
+    
     this->window.display();
 }
 
@@ -71,4 +83,15 @@ void Game::render(){
  */
 bool Game::isWinOpen(){
     return this->window.isOpen();
+}
+
+
+void Game::initEnemy(){
+    
+    this->enemy.setPosition(sf::Vector2f(100.f,100.f)); //we are placing the object's top left corner here
+    this->enemy.setSize(sf::Vector2f(100.f,100.f)); //float value helps compiler
+    this->enemy.setScale(sf::Vector2f(.5f, .5f)); //cut the objects size down by 1/2
+    this->enemy.setFillColor(sf::Color::Cyan);
+    this->enemy.setOutlineColor(sf::Color::Green);
+    this->enemy.setOutlineThickness(1.f);
 }

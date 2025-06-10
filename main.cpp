@@ -4,7 +4,7 @@
 
 
 
-#include <iostream>
+
 #include "Game.h"
 
 
@@ -28,9 +28,6 @@ int main(){
 
       game.render();
     }
-
-
-
 
     return 0;
 }

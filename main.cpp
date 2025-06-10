@@ -5,12 +5,8 @@
 
 
 #include <iostream>
+#include "Game.h"
 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
 
 // allows us to not have sf:: before our sf::window etc
 using namespace sf;
@@ -21,43 +17,16 @@ using namespace sf;
  */
 int main(){
     
-    //window
-    sf::RenderWindow window(sf::VideoMode({800,600}), "Game", sf::Style::Titlebar | sf::Style::Close);
-    
+
+    //Our game 
+    Game game; 
+
     // main loop
-    while(window.isOpen()){
+    while(game.isWinOpen()){
 
-        //event polling
-        while(const std::optional event = window.pollEvent()){
-            if (event ->is<sf::Event::Closed>()){
-                window.close();
-            } else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()){
-                const sf::Keyboard::Scancode key = keyPressed->scancode;
+      game.update();
 
-                switch(key){
-                    case sf::Keyboard::Scancode::Escape:
-                        window.close();
-                        break;
-                    case sf::Keyboard::Scancode::Space:
-                        std::cout << "Space Was Hit" << std::endl;  
-                        break;  
-                }
-
-              
-            }
-        }
-
-        //update
-        window.clear(sf::Color::Magenta); //clear old frame
-        // draw game here
-
-
-
-        window.display(); // tell app that window is done drawing 
-
-
-        //render
-
+      game.render();
     }
 
 
